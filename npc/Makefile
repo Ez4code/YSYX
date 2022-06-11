@@ -1,8 +1,12 @@
+sim = csrc/main.cpp
+ver = vsrc/example.v
+
 all:
-	@echo "Write this Makefile by your self."
+	@verilator -Wall --cc --exe --build $(sim) $(ver)
 
 sim:
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo "Write this Makefile by your self."
+	@verilator -Wall --cc --trace --exe --build $(sim) $(ver)
+
 
 include ../Makefile
