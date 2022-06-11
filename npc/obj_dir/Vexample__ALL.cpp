@@ -2,5 +2,7 @@
 #define VL_INCLUDE_OPT include
 #include "Vexample.cpp"
 #include "Vexample___024root.cpp"
+#include "Vexample__Trace.cpp"
 #include "Vexample___024root__Slow.cpp"
 #include "Vexample__Syms.cpp"
+#include "Vexample__Trace__Slow.cpp"

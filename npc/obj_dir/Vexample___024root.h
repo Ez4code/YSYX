@@ -10,6 +10,8 @@
 //==========
 
 class Vexample__Syms;
+class Vexample_VerilatedVcd;
+
 
 //----------
 
