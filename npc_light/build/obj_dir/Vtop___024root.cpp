@@ -17,7 +17,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     __Vdly__led = vlSelf->led;
     if (vlSelf->rst) {
         __Vdly__led = 1U;
-    } else if ((1U == vlSelf->top__DOT__light1__DOT__count)) {
+    } else if ((0U == vlSelf->top__DOT__light1__DOT__count)) {
         __Vdly__led = ((0xfffeU & ((IData)(vlSelf->led) 
                                    << 1U)) | (1U & 
                                               ((IData)(vlSelf->led) 
