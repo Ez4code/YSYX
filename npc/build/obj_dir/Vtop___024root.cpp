@@ -12,8 +12,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___sequent__TOP__1\n"); );
     // Body
-    vlSelf->top__DOT__led1__DOT__ledr = ((IData)(vlSelf->rst) 
-                                         | ((IData)(vlSelf->a) 
+    vlSelf->top__DOT__led1__DOT__ledr = ((~ (IData)(vlSelf->rst)) 
+                                         & ((IData)(vlSelf->a) 
                                             ^ (IData)(vlSelf->b)));
     vlSelf->led0 = vlSelf->top__DOT__led1__DOT__ledr;
 }
