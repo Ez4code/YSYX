@@ -47,7 +47,8 @@ all: default
 #	@verilator -Wall --cc --exe --build $(SIM) $(VER)
 
 
-sim: default
+run: $(BIN) git
+	@$^
 #	@verilator -Wall --cc --trace --exe --build $(SIM) $(VER)
 
 git:
