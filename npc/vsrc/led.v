@@ -9,7 +9,7 @@ module led(
 	reg ledr;
 
 	always @(posedge clk) begin
-		if(rst) begin ledr <= 0; end
+		if(rst) begin ledr <= 1; end
 		else begin
 			ledr <= a ^ b;
 		end
