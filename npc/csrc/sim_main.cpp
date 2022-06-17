@@ -23,7 +23,7 @@ int main() {
   reset(10);
 
   while(1) {
-    nvboard_update();
+	//  nvboard_update();
     single_cycle();
   }
 }
