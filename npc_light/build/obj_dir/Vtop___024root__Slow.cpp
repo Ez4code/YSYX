@@ -53,5 +53,4 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->clk = 0;
     vlSelf->rst = 0;
     vlSelf->led = 0;
-    vlSelf->top__DOT__light1__DOT__count = 0;
 }
