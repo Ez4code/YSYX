@@ -13,29 +13,20 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___sequent__TOP__1\n"); );
     // Variables
     SData/*15:0*/ __Vdly__led;
-    IData/*31:0*/ __Vdly__top__DOT__light1__DOT__count;
     // Body
-    __Vdly__top__DOT__light1__DOT__count = vlSelf->top__DOT__light1__DOT__count;
     __Vdly__led = vlSelf->led;
     if (vlSelf->rst) {
         __Vdly__led = 1U;
-        __Vdly__top__DOT__light1__DOT__count = 0U;
-    } else {
-        if ((0U == vlSelf->top__DOT__light1__DOT__count)) {
-            __Vdly__led = ((0xfffeU & ((IData)(vlSelf->led) 
-                                       << 1U)) | (1U 
-                                                  & ((IData)(vlSelf->led) 
-                                                     >> 0xfU)));
-        }
-        __Vdly__top__DOT__light1__DOT__count = ((0x4c4b40U 
-                                                 <= vlSelf->top__DOT__light1__DOT__count)
-                                                 ? 0U
-                                                 : 
-                                                ((IData)(1U) 
-                                                 + vlSelf->top__DOT__light1__DOT__count));
+    } else if ((1U == vlSelf->top__DOT__light1__DOT__count)) {
+        __Vdly__led = ((0xfffeU & ((IData)(vlSelf->led) 
+                                   << 1U)) | (1U & 
+                                              ((IData)(vlSelf->led) 
+                                               >> 0xfU)));
     }
     vlSelf->led = __Vdly__led;
-    vlSelf->top__DOT__light1__DOT__count = __Vdly__top__DOT__light1__DOT__count;
+    if (vlSelf->rst) {
+        vlSelf->top__DOT__light1__DOT__count = 0U;
+    }
 }
 
 void Vtop___024root___eval(Vtop___024root* vlSelf) {
