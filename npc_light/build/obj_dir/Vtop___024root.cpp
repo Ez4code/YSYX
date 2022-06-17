@@ -13,7 +13,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___sequent__TOP__1\n"); );
     // Body
     if (vlSelf->rst) {
-        vlSelf->led = 1U;
+        vlSelf->led = 0U;
     }
 }
 

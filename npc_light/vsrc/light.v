@@ -5,7 +5,7 @@ module light(
 );
   reg [31:0] count;
   always @(posedge clk) begin
-		if (rst) begin led <= 16'b0000_0000_0001; count <= 0; end
+		if (rst) begin led <= 16'b0000_0000_0000; count <= 0; end
 		else begin
 			//if (count == 0) led <= {led[14:0], led[15]};
 			//count <= (count >= 5000000 ? 32'b0 : count + 1);
