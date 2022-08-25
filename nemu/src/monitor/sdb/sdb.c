@@ -35,7 +35,7 @@ static int cmd_c(char *args) {
 
 static int cmd_q(char *args) {
 //  return -1;
-	printf("exit nemu\n");
+	printf("Exit NEMU\n");
 	exit(0);
 }
 
