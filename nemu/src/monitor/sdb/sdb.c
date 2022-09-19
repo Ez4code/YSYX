@@ -62,7 +62,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si","Let the program execute N instructions in a single step "
-         "and then suspend the execution. N default value is 1",cmd_si},
+         "\n       and then suspend the execution. N default value is 1",cmd_si},
   { "info", "'info r' print regs state\n       'info w' print watchpoint information", cmd_info},
   { "x", "Exit NEMU", cmd_q }
 
