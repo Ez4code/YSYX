@@ -121,7 +121,7 @@ void init_monitor(int argc, char *argv[]) {
   ));
 
   /* Display welcome message. */
-  welcome();
+  welcome();  printf("good");
 }
 #else // CONFIG_TARGET_AM
 static long load_img() {
@@ -137,7 +137,6 @@ void am_init_monitor() {
   init_mem();
   init_isa();
   load_img();
-  printf("good");
   IFDEF(CONFIG_DEVICE, init_device());
   welcome();
 }
