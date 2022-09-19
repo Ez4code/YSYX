@@ -9,9 +9,8 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
-    print("test");
     for(int i = 0; i <= 31; i++){
-        printf("%-15s%-20x%-24d\n", &regs[i], gpr(i), gpr(i));
+        printf("%-15s%-20lx%-24ld\n", regs[i], gpr(i), gpr(i));
     }
 }
 
