@@ -65,8 +65,8 @@ static struct {
          "\n     and then suspend the execution. N default value is 1",cmd_si},
   { "info", "'info r' print regs state\n       'info w' print watchpoint information", cmd_info},
   { "x", "Calculate the value of the expression EXPR,"
-         " take the result as the starting memory address, "
-         "and output N consecutive 4 bytes in hexadecimal form", cmd_x}
+         "\n    take the result as the starting memory address, "
+         "\n    and output N consecutive 4 bytes in hexadecimal form", cmd_x}
 
   /* TODO: Add more commands */
 
