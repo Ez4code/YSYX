@@ -46,10 +46,10 @@ static int cmd_si(char *args){
     return 0;
 }
 
-static int cmd_info(char *args){
-    if(*args == 'r')isa_reg_display();
-    if(*args == 'w');
-    else printf("Unknown sub command '%s'\n", args);
+static int cmd_info(char *args);
+
+static int cmd_x(char *args){
+    printf("Exit NEMU\n");
     return 0;
 }
 
@@ -64,7 +64,9 @@ static struct {
   { "si","Let the program execute N instructions in a single step "
          "\n     and then suspend the execution. N default value is 1",cmd_si},
   { "info", "'info r' print regs state\n       'info w' print watchpoint information", cmd_info},
-  { "x", "Exit NEMU", cmd_q }
+  { "x", "Calculate the value of the expression EXPR,"
+         " take the result as the starting memory address, "
+         "and output N consecutive 4 bytes in hexadecimal form", cmd_x}
 
   /* TODO: Add more commands */
 
@@ -93,6 +95,13 @@ static int cmd_help(char *args) {
     printf("Unknown command '%s'\n", arg);
   }
   return 0;
+}
+
+static int cmd_info(char *args){
+    if(*args == 'r')isa_reg_display();
+    if(*args == 'w');
+    else printf("Unknown sub command '%s'\n", args);
+    return 0;
 }
 
 void sdb_set_batch_mode() {
