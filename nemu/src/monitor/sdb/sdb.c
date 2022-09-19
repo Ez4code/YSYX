@@ -47,6 +47,7 @@ static int cmd_si(char *args){
 }
 
 static int cmd_info(char *args){
+    printf("Exit NEMU\n");
     isa_reg_display();
     return 0;
 }
