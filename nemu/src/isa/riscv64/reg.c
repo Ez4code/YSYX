@@ -10,8 +10,7 @@ const char *regs[] = {
 
 void isa_reg_display() {
     for(int i = 0; i <= 31; i++){
-        printf("Unknown command '%s'\n", arg);
-        
+        printf("%-15s%-20x%-24d\n", &regs[i], gpr(i), gpr(i));
     }
 }
 
