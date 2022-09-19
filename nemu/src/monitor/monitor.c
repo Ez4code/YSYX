@@ -23,6 +23,7 @@ static void welcome() {
 #ifndef CONFIG_TARGET_AM
 #include <getopt.h>
 
+
 void sdb_set_batch_mode();
 
 static char *log_file = NULL;
@@ -136,6 +137,7 @@ void am_init_monitor() {
   init_mem();
   init_isa();
   load_img();
+  printf("good");
   IFDEF(CONFIG_DEVICE, init_device());
   welcome();
 }
