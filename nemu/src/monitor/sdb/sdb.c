@@ -42,7 +42,8 @@ static int cmd_q(char *args, char *) {
 static int cmd_help(char *args, char *);
 
 static int cmd_si(char *args, char *){
-    cpu_exec(*args);
+    uint64_t n = (uint64_t)args;
+    cpu_exec(n);
     return 0;
 }
 
