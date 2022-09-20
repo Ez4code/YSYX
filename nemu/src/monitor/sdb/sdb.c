@@ -5,7 +5,6 @@
 #include "sdb.h"
 
 static int is_batch_mode = false;
-char *str_end = NULL;
 
 void init_regex();
 void init_wp_pool();
@@ -50,7 +49,7 @@ static int cmd_si(char *args){
 static int cmd_info(char *args);
 
 static int cmd_x(char *args){
-    printf("*args %c, *str_end  %c",*args,*str_end);
+    printf("*args %c, *str_end  %c",args[0],args[1]);
     //word_t vaddr_read(vaddr_t addr, 4);
     return 0;
 }
@@ -117,7 +116,7 @@ void sdb_mainloop() {
   }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
-    str_end = str + strlen(str);
+    char *str_end = str + strlen(str);
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
