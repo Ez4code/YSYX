@@ -23,7 +23,7 @@ void init_isa() {
   /* Load built-in image. */
     printf("sizeof img:%ld",sizeof(img));
   memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
-    printf("sizeof img:%ld",sizeof(img));
+    printf("sizeof img:%ld",sizeof(img[1]));
   /* Initialize this virtual computer system. */
   restart();
 }
