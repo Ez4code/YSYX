@@ -55,8 +55,8 @@ static int cmd_x(char * args, char * sub_args){
     vaddr_t addr = strtol(sub_args ,&str, 16);
     printf("addr = %lx\n",addr);
     for(int i = 0; i < atoi(args); i++){
-        word_t mem = vaddr_read(addr, 4);
-        printf("%-15ld:%ld", addr, mem);
+        word_t mem = vaddr_read(addr + i * 4, 4);
+        printf("%-15lx:%ld\n", addr + i * 4, mem);
 
     }
     return 0;
