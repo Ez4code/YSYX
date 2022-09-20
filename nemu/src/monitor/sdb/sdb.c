@@ -27,29 +27,30 @@ static char* rl_gets() {
   return line_read;
 }
 
-static int cmd_c(char *args) {
+static int cmd_c(char *args, char *) {
   cpu_exec(-1);
   return 0;
 }
 
 
-static int cmd_q(char *args) {
+static int cmd_q(char *args, char *) {
 //  return -1;
 	printf("Exit NEMU\n");
 	exit(0);
 }
 
-static int cmd_help(char *args);
+static int cmd_help(char *args, char *);
 
-static int cmd_si(char *args){
+static int cmd_si(char *args, char *){
     cpu_exec(*args);
     return 0;
 }
 
-static int cmd_info(char *args);
+static int cmd_info(char *args, char *);
 
-static int cmd_x(char *args){
+static int cmd_x(char * args, char * sub_args){
 //    printf("*args %s, *str_end  %s",*args, *sub_args);
+    printf("1:%s   2:%s",args,sub_args);
     //word_t vaddr_read(vaddr_t addr, 4);
     return 0;
 }
@@ -57,7 +58,7 @@ static int cmd_x(char *args){
 static struct {
   const char *name;
   const char *description;
-  int (*handler) (char *);
+  int (*handler) (char *, char *);
 } cmd_table [] = {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
@@ -75,7 +76,7 @@ static struct {
 
 #define NR_CMD ARRLEN(cmd_table)
 
-static int cmd_help(char *args) {
+static int cmd_help(char *args, char *) {
   /* extract the first argument */
   char *arg = strtok(NULL, " ");
   int i;
@@ -98,7 +99,7 @@ static int cmd_help(char *args) {
   return 0;
 }
 
-static int cmd_info(char *args){
+static int cmd_info(char *args, char *){
     if(*args == 'r')isa_reg_display();
     if(*args == 'w');
     else printf("Unknown sub command '%s'\n", args);
@@ -111,13 +112,12 @@ void sdb_set_batch_mode() {
 
 void sdb_mainloop() {
   if (is_batch_mode) {
-    cmd_c(NULL);
+    cmd_c(NULL, NULL);
     return;
   }
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
-    printf("%s",str + strlen(str)-1);
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
@@ -127,13 +127,14 @@ void sdb_mainloop() {
      * which may need further parsing
      */
     char *args = strtok(NULL, " ");
-    //char *sub_args = strtok(NULL, " ");
+    char *sub_args = NULL;
 
-    //char *args = cmd + strlen(cmd) + 1;
+      //char *args = cmd + strlen(cmd) + 1;
     if (args >= str_end) {
       args = NULL;
-      //sub_args = NULL;
     }
+    else
+        sub_args = strtok(NULL, " ");
 
 #ifdef CONFIG_DEVICE
     extern void sdl_clear_event_queue();
@@ -143,7 +144,7 @@ void sdb_mainloop() {
     int i;
     for (i = 0; i < NR_CMD; i ++) {
       if (strcmp(cmd, cmd_table[i].name) == 0) {
-        if (cmd_table[i].handler(args) < 0) { return; }
+        if (cmd_table[i].handler(args, sub_args) < 0) { return; }
         break;
       }
     }
