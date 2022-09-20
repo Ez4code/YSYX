@@ -126,9 +126,10 @@ void sdb_mainloop() {
     /* treat the remaining string as the arguments,
      * which may need further parsing
      */
-    char *args = strtok(NULL, " ");
-    char *args_1 = strtok(NULL, " ");
-    printf("1:%d   2:%d",*args,  *args_1);
+    char * args = NULL;
+//    char *args = strtok(NULL, " ");
+//    char *args_1 = strtok(NULL, " ");
+    printf("1:%s   2:%s",strtok(NULL, " "),  strtok(NULL, " "));
     //char *args = cmd + strlen(cmd) + 1;
     if (args >= str_end) {
       args = NULL;
