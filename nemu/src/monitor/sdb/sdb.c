@@ -129,7 +129,7 @@ void sdb_mainloop() {
     char * args = NULL;
 //    char *args = strtok(NULL, " ");
 //    char *args_1 = strtok(NULL, " ");
-    printf("1:%s   2:%s",strtok(NULL, " "),  strtok(NULL, " "));
+    printf("1:%d   2:%s",* args,  strtok(NULL, " "));
     //char *args = cmd + strlen(cmd) + 1;
     if (args >= str_end) {
       args = NULL;
