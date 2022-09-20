@@ -42,9 +42,7 @@ static int cmd_q(char *args, char *) {
 static int cmd_help(char *args, char *);
 
 static int cmd_si(char *args, char *){
-    uint64_t n = (uint64_t)args;
-    printf("si = %s",args);
-    cpu_exec(n);
+    cpu_exec(atoi(args));
     return 0;
 }
 
