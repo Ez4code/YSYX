@@ -51,7 +51,11 @@ static int cmd_info(char *args, char *);
 static int cmd_x(char * args, char * sub_args){
 //    printf("*args %s, *str_end  %s",*args, *sub_args);
     printf("1:%s   2:%s",args,sub_args);
-    //word_t vaddr_read(vaddr_t addr, 4);
+//    for(int i; i < atoi(args); i++){
+//        printf
+//
+//    }
+//    word_t vaddr_read(atoi(sub_args), 4);
     return 0;
 }
 
