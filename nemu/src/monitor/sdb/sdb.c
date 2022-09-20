@@ -50,7 +50,6 @@ static int cmd_si(char *args, char *){
 static int cmd_info(char *args, char *);
 
 static int cmd_x(char * args, char * sub_args){
-    printf("1:%s   2:%s", args, sub_args);
     char *str;
     vaddr_t addr = strtol(sub_args ,&str, 16);
     printf("addr = %lx\n",addr);
