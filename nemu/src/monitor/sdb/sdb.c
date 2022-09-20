@@ -1,5 +1,6 @@
 #include <isa.h>
 #include <cpu/cpu.h>
+#include <memory/vaddr.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
@@ -49,13 +50,14 @@ static int cmd_si(char *args, char *){
 static int cmd_info(char *args, char *);
 
 static int cmd_x(char * args, char * sub_args){
-//    printf("*args %s, *str_end  %s",*args, *sub_args);
-    printf("1:%s   2:%s",args,sub_args);
-//    for(int i; i < atoi(args); i++){
-//        printf
-//
-//    }
-//    word_t vaddr_read(atoi(sub_args), 4);
+    printf("1:%s   2:%s", args, sub_args);
+
+    vaddr_t addr = atoi(sub_args);
+    for(int i = 0; i < atoi(args); i++){
+        word_t mem = vaddr_read(addr, 4);
+        printf("%-15ld:%ld", addr, mem);
+
+    }
     return 0;
 }
 
