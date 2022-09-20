@@ -49,8 +49,7 @@ static int cmd_si(char *args){
 static int cmd_info(char *args);
 
 static int cmd_x(char *args){
-    printf("args:%c",*args);
-    printf("*args %c, *str_end  %c",args[0],args[4]);
+//    printf("*args %s, *str_end  %s",*args, *sub_args);
     //word_t vaddr_read(vaddr_t addr, 4);
     return 0;
 }
@@ -118,6 +117,7 @@ void sdb_mainloop() {
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
+    printf("%s",str + strlen(str));
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
@@ -127,11 +127,12 @@ void sdb_mainloop() {
      * which may need further parsing
      */
     char *args = strtok(NULL, " ");
-//    char *args_1 = strtok(NULL, " ");
-    printf("1:%d   2:%s",* args,  strtok(NULL, " "));
+    //char *sub_args = strtok(NULL, " ");
+
     //char *args = cmd + strlen(cmd) + 1;
     if (args >= str_end) {
       args = NULL;
+      //sub_args = NULL;
     }
 
 #ifdef CONFIG_DEVICE
