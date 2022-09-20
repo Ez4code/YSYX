@@ -118,7 +118,6 @@ void sdb_mainloop() {
 
   for (char *str; (str = rl_gets()) != NULL; ) {
     char *str_end = str + strlen(str);
-    printf ("loop str_end: %c",*(str_end-1 ));
 
     /* extract the first token as the command */
     char *cmd = strtok(str, " ");
@@ -127,7 +126,10 @@ void sdb_mainloop() {
     /* treat the remaining string as the arguments,
      * which may need further parsing
      */
-    char *args = cmd + strlen(cmd) + 1;
+    char *args = strtok(NULL, " ");
+    char *args_1 = strtok(NULL, " ");
+    printf("1:%d   2:%d",*args,  *args_1);
+    //char *args = cmd + strlen(cmd) + 1;
     if (args >= str_end) {
       args = NULL;
     }
