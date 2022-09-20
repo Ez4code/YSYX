@@ -49,6 +49,7 @@ static int cmd_si(char *args){
 static int cmd_info(char *args);
 
 static int cmd_x(char *args){
+    printf("args:%c",*args);
     printf("*args %c, *str_end  %c",args[0],args[4]);
     //word_t vaddr_read(vaddr_t addr, 4);
     return 0;
