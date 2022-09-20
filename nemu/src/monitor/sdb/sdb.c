@@ -51,8 +51,8 @@ static int cmd_info(char *args, char *);
 
 static int cmd_x(char * args, char * sub_args){
     printf("1:%s   2:%s", args, sub_args);
-
-    vaddr_t addr = atol(sub_args);
+    char *str;
+    vaddr_t addr = strtol(sub_args ,&str, 16);
     printf("addr = %ld",addr);
     for(int i = 0; i < atoi(args); i++){
         word_t mem = vaddr_read(addr, 4);
