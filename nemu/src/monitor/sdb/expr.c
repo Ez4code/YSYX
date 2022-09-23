@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_NUM, TK_EQ,
 
   /* TODO: Add more token types */
 
@@ -19,11 +19,19 @@ static struct rule {
 
   /* TODO: Add more rules.
    * Pay attention to the precedence level of different rules.
+   * BOY666: BUT WHY 'Pay attention to the precedence levelS'?
    */
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
-  {"==", TK_EQ},        // equal
+  {"\\-", '-'},         // minus
+  {"\\*", '*'},         // multiply
+  {"/"  , '/'},         // divide
+  {"\\(", '('},         // left bracket
+  {"\\)", ')'},         // right bracket
+  {"[0-9]+", TK_NUM},   // decimal nums
+
+  {"==", TK_EQ}        // equal
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -80,7 +88,21 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          default: TODO();
+          case TK_NOTYPE: nr_token ++; break;     //weather space need nr_token ++?
+          case '+': tokens[nr_token ++].type = '+'; break;
+          case '-': tokens[nr_token ++].type = '-'; break;
+          case '*': tokens[nr_token ++].type = '*'; break;
+          case '/': tokens[nr_token ++].type = '/'; break;
+          case '(': tokens[nr_token ++].type = '('; break;
+          case ')': tokens[nr_token ++].type = ')'; break;
+          case TK_NUM:
+            for(int i = 0; i<substr_len ; i++){
+              tokens[nr_token].str[i] = substr_start[i];
+            }
+            tokens[nr_token ++].type = TK_NUM;
+            break;
+          default: break;
+            //default: TODO();
         }
 
         break;
