@@ -97,7 +97,7 @@ static int cmd_help(char *args, char *) {
 
 static int cmd_info(char *args, char *){
     if(*args == 'r')isa_reg_display();
-    if(*args == 'w');
+    else if(*args == 'w');
     else printf("Unknown sub command '%s'\n", args);
     return 0;
 }
