@@ -88,7 +88,7 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          case TK_NOTYPE: tokens[nr_token ++].type = TK_NOTYPE; break;     //weather space need nr_token ++?
+          case TK_NOTYPE: break;
           case '+': tokens[nr_token ++].type = '+'; break;
           case '-': tokens[nr_token ++].type = '-'; break;
           case '*': tokens[nr_token ++].type = '*'; break;
