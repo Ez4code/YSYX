@@ -88,7 +88,7 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          case TK_NOTYPE: nr_token ++; break;     //weather space need nr_token ++?
+          case TK_NOTYPE: tokens[nr_token ++].type = TK_NOTYPE; break;     //weather space need nr_token ++?
           case '+': tokens[nr_token ++].type = '+'; break;
           case '-': tokens[nr_token ++].type = '-'; break;
           case '*': tokens[nr_token ++].type = '*'; break;
@@ -96,6 +96,7 @@ static bool make_token(char *e) {
           case '(': tokens[nr_token ++].type = '('; break;
           case ')': tokens[nr_token ++].type = ')'; break;
           case TK_NUM:
+            if (substr_len > 32) assert(0);                                //debug
             for(int i = 0; i<substr_len ; i++){
               tokens[nr_token].str[i] = substr_start[i];
             }
