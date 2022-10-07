@@ -148,9 +148,7 @@ static uint32_t eval(int p, int q) {
   /* The expression is surrounded by a matched pair of parentheses.
    * If that is the case, just throw away the parentheses.
    */
-
-  return 100;
-  //return eval(p + 1, q - 1);
+  return eval(p + 1, q - 1);
   }
   else {
     int i = 0, j = 0;
@@ -207,6 +205,6 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   else {
     *success = true;
-    return eval(0, nr_token);
+    return eval(0, nr_token-1);
   }
 }
