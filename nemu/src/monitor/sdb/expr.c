@@ -204,6 +204,6 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   else {
     *success = true;
-    return eval(0, nr_token-1);
+    return eval(0, nr_token);
   }
 }
