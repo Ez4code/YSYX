@@ -6,6 +6,7 @@
 #include "sdb.h"
 
 static int is_batch_mode = false;
+static int expr_count = 0;
 
 void init_regex();
 void init_wp_pool();
@@ -56,7 +57,8 @@ static int cmd_p(char *args, char *){
   bool *success = &flag;
   word_t result = expr(args, success);
   if(success){
-    printf("%ld",result);
+    printf("$%d = %ld",expr_count, result);
+    expr_count++;
     return 0;
   }
   else return 0;
