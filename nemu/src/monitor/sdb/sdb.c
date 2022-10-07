@@ -1,9 +1,17 @@
+/*
+name: boy666
+bug:
+  1.String parsing is worked by " ", so in the P instruction, "p 1+ 1" results in parsing to "P 1".
+
+*/
+
 #include <isa.h>
 #include <cpu/cpu.h>
 #include <memory/vaddr.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
+
 
 static int is_batch_mode = false;
 static int expr_count = 0;
@@ -53,7 +61,6 @@ static int cmd_info(char *args, char *);
 static int cmd_x(char * args, char * sub_args);
 
 static int cmd_p(char *args, char *){
-  printf("%s",args);
   bool flag = false;
   bool *success = &flag;
   word_t result = expr(args, success);
