@@ -132,12 +132,12 @@ static bool check_parentheses(int p, int q) {
 }
 
 static uint32_t eval(int p, int q) {
+  printf("%d,%d",p,q);
   if (p > q) {
   /* Bad expression */
   assert(0);                        //debug
   }
   else if (p == q) {
-    printf("%d,%d",p,q);
   /* Single token.
    * For now this token should be a number.
    * Return the value of the number.
