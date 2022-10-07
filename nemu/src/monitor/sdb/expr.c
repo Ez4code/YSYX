@@ -135,7 +135,7 @@ static uint32_t eval(int p, int q) {
   if (p > q) {
   /* Bad expression */
   //assert(0);                        //debug
-  return p;
+  return q;
   }
   else if (p == q) {
   /* Single token.
