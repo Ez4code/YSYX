@@ -86,7 +86,7 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-        printf("nr_token = %d", nr_token);          //debug
+
         switch (rules[i].token_type) {
           case TK_NOTYPE: break;
           case '+': tokens[nr_token ++].type = '+'; break;
@@ -134,7 +134,8 @@ static bool check_parentheses(int p, int q) {
 static uint32_t eval(int p, int q) {
   if (p > q) {
   /* Bad expression */
-  assert(0);                        //debug
+  //assert(0);                        //debug
+  return 0;
   }
   else if (p == q) {
   /* Single token.
