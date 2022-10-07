@@ -51,6 +51,10 @@ static int cmd_info(char *args, char *);
 
 static int cmd_x(char * args, char * sub_args);
 
+static int cmd_p(char *args, char *){
+  return 0;
+}
+
 static struct {
   const char *name;
   const char *description;
@@ -64,7 +68,8 @@ static struct {
   { "info", "'info r' print regs state\n       'info w' print watchpoint information", cmd_info},
   { "x", "Calculate the value of the expression EXPR,"
          "\n    take the result as the starting memory address, "
-         "\n    and output N consecutive 4 bytes in hexadecimal form", cmd_x}
+         "\n    and output N consecutive 4 bytes in hexadecimal form", cmd_x},
+  { "p", "Calculate the value of the expression EXPR", cmd_p}
 
   /* TODO: Add more commands */
 

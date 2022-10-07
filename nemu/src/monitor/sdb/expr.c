@@ -102,7 +102,7 @@ static bool make_token(char *e) {
             }
             tokens[nr_token ++].type = TK_NUM;
             break;
-          default: break;
+          default: assert(0); //break;
             //default: TODO();
         }
 
@@ -119,15 +119,90 @@ static bool make_token(char *e) {
   return true;
 }
 
+static bool check_parentheses(int p, int q) {
+  int i = 0, j = 0;
+  for (i = p; i <= q; i++) {
+    if (tokens[i].type == '(') j++;
+    if (tokens[i].type == ')') j--;
+    if (j < 0) return false;        //bad expression
+    if (j == 0 && i != p && i != q) return false;
+  }
+  if(j == 0) return true;
+  else return false;                //bad expression
+}
+
+static uint32_t eval(int p, int q) {
+  if (p > q) {
+  /* Bad expression */
+  assert(0);                        //debug
+  }
+  else if (p == q) {
+  /* Single token.
+   * For now this token should be a number.
+   * Return the value of the number.
+   */
+    return atoi(tokens[p].str);
+  }
+  else if (check_parentheses(p, q) == true) {
+  /* The expression is surrounded by a matched pair of parentheses.
+   * If that is the case, just throw away the parentheses.
+   */
+  return eval(p + 1, q - 1);
+  }
+  else {
+    int i = 0, j = 0;
+    int op = 0, op_type = 0;
+    int val1, val2;
+    bool flag = false;
+    for (i = p; i <= q; i++) {
+      switch (tokens[i].type) {
+        case '(':
+          j++;
+          break;
+        case ')':
+          j--;
+          break;
+        case '+':
+        case '-':
+          if (!j) {
+            op = i;
+            op_type = tokens[i].type;
+            flag = true;
+          }
+          break;
+        case '*':
+        case '/':
+          if (!j && !flag) {
+            op = i;
+            op_type = tokens[i].type;
+          }
+          break;
+        case TK_NUM:
+          break;
+        default:
+          assert(0); //break;
+      }
+    }
+    val1 = eval(p, op - 1);
+    val2 = eval(op + 1, q);
+
+    switch (op_type) {
+      case '+': return val1 + val2;
+      case '-': return val1 - val2;
+      case '*': return val1 * val2;
+      case '/': return val1 / val2;
+      default: assert(0);
+    }
+  }
+}
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
-
   /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
-  return 0;
+  else {
+    return eval(0, nr_token);
+  }
 }
