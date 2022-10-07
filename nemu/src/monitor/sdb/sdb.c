@@ -52,7 +52,14 @@ static int cmd_info(char *args, char *);
 static int cmd_x(char * args, char * sub_args);
 
 static int cmd_p(char *args, char *){
-  return 0;
+  bool flag = false;
+  bool *success = &flag;
+  word_t result = expr(args, success);
+  if(success){
+    printf("%ld",result);
+    return 0;
+  }
+  else return 0;
 }
 
 static struct {
