@@ -61,7 +61,10 @@ static int cmd_p(char *args, char *){
     expr_count++;
     return 0;
   }
-  else return 0;
+  else {
+    printf("Invalid number \"todo\".");
+    return 0;
+  }
 }
 
 static struct {
