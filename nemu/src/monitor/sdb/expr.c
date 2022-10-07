@@ -132,7 +132,6 @@ static bool check_parentheses(int p, int q) {
 }
 
 static uint32_t eval(int p, int q) {
-  printf("%d,%d",p,q);
   if (p > q) {
   /* Bad expression */
   assert(0);                        //debug
@@ -204,6 +203,7 @@ word_t expr(char *e, bool *success) {
   }
   /* TODO: Insert codes to evaluate the expression. */
   else {
+    printf("nr_token = %d", nr_token);          //debug
     *success = true;
     return eval(0, nr_token);
   }
