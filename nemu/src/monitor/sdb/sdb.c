@@ -53,6 +53,7 @@ static int cmd_info(char *args, char *);
 static int cmd_x(char * args, char * sub_args);
 
 static int cmd_p(char *args, char *){
+  printf("%s",args);
   bool flag = false;
   bool *success = &flag;
   word_t result = expr(args, success);
