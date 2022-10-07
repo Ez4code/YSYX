@@ -57,7 +57,7 @@ static int cmd_p(char *args, char *){
   bool *success = &flag;
   word_t result = expr(args, success);
   if(success){
-    printf("$%d = %ld",expr_count, result);
+    printf("$%d = %ld/n",expr_count, result);
     expr_count++;
     return 0;
   }
