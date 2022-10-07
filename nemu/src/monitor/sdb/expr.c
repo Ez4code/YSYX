@@ -134,8 +134,7 @@ static bool check_parentheses(int p, int q) {
 static uint32_t eval(int p, int q) {
   if (p > q) {
   /* Bad expression */
-  //assert(0);                        //debug
-  return q;
+  assert(0);                        //debug
   }
   else if (p == q) {
   /* Single token.
