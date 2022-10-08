@@ -66,6 +66,8 @@ static int nr_token __attribute__((used))  = 0;
 static bool make_token(char *e) {
   int position = 0;
   int i;
+  bool plus_flag = false;
+  bool minus_flag = false;
   regmatch_t pmatch;
 
   nr_token = 0;
@@ -89,18 +91,58 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
           case TK_NOTYPE: break;
-          case '+': tokens[nr_token ++].type = '+'; break;
-          case '-': tokens[nr_token ++].type = '-'; break;
-          case '*': tokens[nr_token ++].type = '*'; break;
-          case '/': tokens[nr_token ++].type = '/'; break;
-          case '(': tokens[nr_token ++].type = '('; break;
-          case ')': tokens[nr_token ++].type = ')'; break;
+          case '+': {
+            if(plus_flag || minus_flag) break;
+            else{
+              tokens[nr_token ++].type = '+';
+              plus_flag = true;
+              break;
+            }
+          }
+          case '-': {
+            if(plus_flag || !minus_flag){
+              tokens[nr_token ++].type = '-';
+              minus_flag = true;
+              break;
+            }
+            else{
+              tokens[nr_token ++].type = '+';
+              plus_flag = true;
+              break;
+            }
+          }
+          case '*': {
+            tokens[nr_token ++].type = '*';
+            plus_flag = false;
+            minus_flag = false;
+            break;
+          }
+          case '/': {
+            tokens[nr_token ++].type = '/';
+            plus_flag = false;
+            minus_flag = false;
+            break;
+          }
+          case '(': {
+            tokens[nr_token ++].type = '(';
+            plus_flag = false;
+            minus_flag = false;
+            break;
+          }
+          case ')': {
+            tokens[nr_token ++].type = ')';
+            plus_flag = false;
+            minus_flag = false;
+            break;
+          }
           case TK_NUM:
             if (substr_len > 32) assert(0);                                //debug
             for(int i = 0; i<substr_len ; i++){
               tokens[nr_token].str[i] = substr_start[i];
             }
             tokens[nr_token ++].type = TK_NUM;
+            plus_flag = false;
+            minus_flag = false;
             break;
           default: assert(0); //break;
             //default: TODO();
