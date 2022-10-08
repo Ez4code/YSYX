@@ -106,7 +106,7 @@ static bool make_token(char *e) {
               break;
             }
             else{
-              tokens[nr_token ++].type = '+';
+              tokens[nr_token].type = '+';
               plus_flag = true;
               break;
             }
