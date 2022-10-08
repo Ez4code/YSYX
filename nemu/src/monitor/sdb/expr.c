@@ -100,13 +100,13 @@ static bool make_token(char *e) {
             }
           }
           case '-': {
-            if(plus_flag || !minus_flag){
+            if( !minus_flag){
               tokens[nr_token ++].type = '-';
               minus_flag = true;
               break;
             }
             else{
-              tokens[nr_token].type = '*';
+              tokens[nr_token].type = '+';
               plus_flag = true;
               break;
             }
