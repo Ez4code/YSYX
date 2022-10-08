@@ -18,7 +18,7 @@ static char *code_format =
 
 static void gen_num(){
   buf = itoa()
-          
+
 }
 
 static void gen_rand_expr() {
