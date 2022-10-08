@@ -1,7 +1,8 @@
 /*
 name: boy666
 bug:
-  1.String parsing is worked by " ", so in the P instruction, "p 1+ 1" results in parsing to "P 1".
+  1.String parsing is worked by " ", so in the P instruction, "p 1+ 1" results in parsing to "P 1";
+  2.P instruction can't calculate 1 +-1;
 
 */
 
