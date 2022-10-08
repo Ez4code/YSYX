@@ -17,7 +17,7 @@ static char *code_format =
 "}";
 
 static void gen_num(){
-  
+
 
 }
 
