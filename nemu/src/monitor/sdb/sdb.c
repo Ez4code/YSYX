@@ -3,6 +3,7 @@ name: boy666
 bug:
   1.String parsing is worked by " ", so in the P instruction, "p 1+ 1" results in parsing to "P 1";
   2.P instruction can't calculate 1 +-1;
+  3.P instruction can input str[32] num, but can't handle str[32]. Only can handle 2^32 num.
 
 */
 
