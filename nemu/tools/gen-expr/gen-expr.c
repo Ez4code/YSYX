@@ -4,6 +4,7 @@
 #include <time.h>
 #include <assert.h>
 #include <string.h>
+#include <stdbool.h>
 
 // this should be enough
 static bool divisor = false;
@@ -17,27 +18,47 @@ static char *code_format =
 "  return 0; "
 "}";
 
+size_t my_strlcpy(char *des, const char *src, size_t length) {
+  size_t ret = strlen(src);
+  if(des[length-1] == '\0') length--;
+  for (int i = 0; src[i] != '\0' && i <= ret - 1; i++){
+    des[length+i] = src[i];
+  }
+  des[ret] = '\0';
+  return strlen(src);
+}
+
+uint32_t choose(uint32_t n){
+  return rand() % n;
+}
+
+static void gen(char str){
+  strncpy(buf+strlen(buf),&str,1);
+}
+
 static void gen_num(){
   uint32_t n;
   char num[32];
   if(divisor){
     do{ n = rand(); n = n + rand(); }while(n != 0);
   }
-  else: {
+  else {
     n = rand();        //even if RAND_MAX is less than 2147483647.
     n = n + rand();
   }
-  sprintf(num,"%ld",n);
-  strcpy(buf,num);
+  sprintf(num,"%u",n);
+  strncpy(buf+strlen(buf),num,12);
 }
 
 static void gen_rand_op() {
+  char str;
   switch (choose(3)){
-    case 0: strcpy(buf,"\\+"); break;
-    case 1: strcpy(buf,"\\-"); break;
-    case 2: strcpy(buf,"\\*"); break;
-    default: strcpy(buf,"/"); divisor = true; break;
+    case 0:  str = '+'; break;
+    case 1:  str = '-'; break;
+    case 2:  str = '*'; break;
+    default: str = '/'; divisor = true; break;
   }
+  strncpy(buf+strlen(buf), &str, 1);
 }
 
 static void gen_rand_expr() {
@@ -58,9 +79,10 @@ int main(int argc, char *argv[]) {
   int len = 0;
   int i;
   for (i = 0; i < loop; i ++) {
+    memset(buf,0,sizeof(buf));
     gen_rand_expr();
     len = strlen(buf);
-    if(len >= 65530) break;
+    if(len >= 65530) continue;
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen("/tmp/.code.c", "w");
@@ -75,10 +97,10 @@ int main(int argc, char *argv[]) {
     assert(fp != NULL);
 
     int result;
-    fscanf(fp, "%d", &result);
-    pclose(fp);
-
-    printf("%u %s\n", result, buf);
+    if(fscanf(fp, "%d", &result)){
+      pclose(fp);
+      printf("%u %s\n", result, buf);
+    };
   }
   return 0;
 }
