@@ -6,6 +6,7 @@
 #include <string.h>
 
 // this should be enough
+static bool divisor = false;
 static char buf[65536] = {};
 static char code_buf[65536 + 128] = {}; // a little larger than `buf`
 static char *code_format =
@@ -17,15 +18,33 @@ static char *code_format =
 "}";
 
 static void gen_num(){
-  buf = itoa()
+  uint32_t n;
+  char num[32];
+  if(divisor){
+    do{ n = rand(); n = n + rand(); }while(n != 0);
+  }
+  else: {
+    n = rand();        //even if RAND_MAX is less than 2147483647.
+    n = n + rand();
+  }
+  sprintf(num,"%ld",n);
+  strcpy(buf,num);
+}
 
+static void gen_rand_op() {
+  switch (choose(3)){
+    case 0: strcpy(buf,"\\+"); break;
+    case 1: strcpy(buf,"\\-"); break;
+    case 2: strcpy(buf,"\\*"); break;
+    default: strcpy(buf,"/"); divisor = true; break;
+  }
 }
 
 static void gen_rand_expr() {
   switch (choose(3)) {
     case 0: gen_num(); break;
     case 1: gen('('); gen_rand_expr(); gen(')'); break;
-    default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); break;
+    default: gen_rand_expr(); gen_rand_op(); gen_rand_expr(); divisor = false;break;
   }
 }
 
@@ -36,10 +55,12 @@ int main(int argc, char *argv[]) {
   if (argc > 1) {
     sscanf(argv[1], "%d", &loop);
   }
+  int len = 0;
   int i;
   for (i = 0; i < loop; i ++) {
     gen_rand_expr();
-
+    len = strlen(buf);
+    if(len >= 65530) break;
     sprintf(code_buf, code_format, buf);
 
     FILE *fp = fopen("/tmp/.code.c", "w");
