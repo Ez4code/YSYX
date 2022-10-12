@@ -1,6 +1,5 @@
 #include <common.h>
-#include <stdio.h>    //just for expr
-#include "monitor/sdb/sdb.h"      //just for expr
+
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
@@ -17,7 +16,8 @@ int main(int argc, char *argv[]) {
 
 //************ epxr read and calculate
   printf("hello");
-
+#include <stdio.h>    //just for expr
+#include "monitor/sdb/sdb.h"      //just for expr
   FILE *fp;
   uint32_t true_result;
   uint32_t result;
