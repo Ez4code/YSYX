@@ -1,6 +1,5 @@
 #include <common.h>
 
-
 void init_monitor(int, char *[]);
 void am_init_monitor();
 void engine_start();
@@ -14,7 +13,9 @@ int main(int argc, char *argv[]) {
   init_monitor(argc, argv);
 #endif
 
-//************ epxr read and calculate
+
+
+//************ epxr read and calculate ************
   printf("hello");
 #include <stdio.h>    //just for expr
 #include "monitor/sdb/sdb.h"      //just for expr
@@ -41,7 +42,11 @@ int main(int argc, char *argv[]) {
     fclose(fp);
   }
 
-//************ epxr read and calculate
+//************ epxr read and calculate ************
+
+
+
+
 
   /* Start engine. */
   engine_start();
