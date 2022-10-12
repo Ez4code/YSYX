@@ -16,11 +16,11 @@ int main(int argc, char *argv[]) {
 
 //************ epxr read and calculate
   printf("hello");
-  
+
   FILE *fp;
   uint32_t result;
   char expr[65530];
-  if ((fp = fopen("~/workspace/ysyx-workbench/nemu/tools/gen-expr/input", "r")) == NULL) printf("\aFile open failed.\n");
+  if ((fp = fopen("~/workspace/ysyx-workbench/nemu/tools/gen-expr/build/input", "r")) == NULL) printf("\aFile open failed.\n");
   else{
     while(fscanf(fp, "%u%s", &result, expr) == 2)
     {
