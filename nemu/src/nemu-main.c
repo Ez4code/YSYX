@@ -1,5 +1,6 @@
 #include <common.h>
 #include <stdio.h>    //just for expr
+#include "monitor/sdb/sdb.h"      //just for expr
 
 void init_monitor(int, char *[]);
 void am_init_monitor();
@@ -18,14 +19,23 @@ int main(int argc, char *argv[]) {
   printf("hello");
 
   FILE *fp;
+  uint32_t true_result;
   uint32_t result;
-  char expr[65530];
+  char expression[65530];
   if ((fp = fopen("/home/boy666/workspace/ysyx-workbench/nemu/tools/gen-expr/build/input", "r")) == NULL) printf("\aFile open failed.\n");
   else{
-    while(fscanf(fp, "%u%s", &result, expr) == 2)
+    while(fscanf(fp, "%u%s", &true_result, expression) == 2)
     {
-      printf("%u %s\n", result, expr);
+      printf("%u %s\n", true_result, expression);
+      bool flag = false;
+      bool *success = &flag;
+      result = expr(expression, success);
 
+      if(success){
+        if(result == true_result)
+        printf("result = good\n");
+
+      }
     }
 
     fclose(fp);
