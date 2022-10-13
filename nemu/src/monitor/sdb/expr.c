@@ -96,15 +96,14 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
           case TK_NOTYPE: break;
-          case '+': {
+          case '+':
             if(plus_flag || minus_flag) break;
             else{
               tokens[nr_token ++].type = '+';
               plus_flag = true;
               break;
             }
-          }
-          case '-': {
+          case '-':
             if(!minus_flag){
               if(plus_flag) tokens[nr_token].type = '-';
               else tokens[nr_token++].type = '-';
@@ -116,31 +115,26 @@ static bool make_token(char *e) {
               plus_flag = true;
               break;
             }
-          }
-          case '*': {
+          case '*':
             tokens[nr_token ++].type = '*';
             plus_flag = false;
             minus_flag = false;
             break;
-          }
-          case '/': {
+          case '/':
             tokens[nr_token ++].type = '/';
             plus_flag = false;
             minus_flag = false;
             break;
-          }
-          case '(': {
+          case '(':
             tokens[nr_token ++].type = '(';
             plus_flag = false;
             minus_flag = false;
             break;
-          }
-          case ')': {
+          case ')':
             tokens[nr_token ++].type = ')';
             plus_flag = false;
             minus_flag = false;
             break;
-          }
           case TK_NUM:
             if (substr_len > 32) assert(0);                                //debug
             for(int i = 0; i<substr_len ; i++){
@@ -204,12 +198,8 @@ static uint32_t eval(int p, int q) {
     bool flag = false;
     for (i = p; i <= q; i++) {
       switch (tokens[i].type) {
-        case '(':
-          j++;
-          break;
-        case ')':
-          j--;
-          break;
+        case '(': j++; break;
+        case ')': j--; break;
         case '+':
         case '-':
           if (!j) {
@@ -225,10 +215,8 @@ static uint32_t eval(int p, int q) {
             op_type = tokens[i].type;
           }
           break;
-        case TK_NUM:
-          break;
-        default:
-          assert(0); //break;
+        case TK_NUM: break;
+        default: assert(0); //break;
       }
     }
     val1 = eval(p, op - 1);
