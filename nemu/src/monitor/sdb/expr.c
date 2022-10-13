@@ -6,7 +6,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_NUM, TK_EQ,
+  TK_NOTYPE = 256, TK_HEX, TK_REG, TK_NUM, TK_EQ, TK_NEQ, TK_AND, TK_DEREF
 
   /* TODO: Add more token types */
 
@@ -23,6 +23,8 @@ static struct rule {
    */
 
   {" +", TK_NOTYPE},    // spaces
+  {"0x[a-zA-Z0-9]+", TK_HEX},
+  {"\\$", TK_REG},
   {"\\+", '+'},         // plus
   {"\\-", '-'},         // minus
   {"\\*", '*'},         // multiply
@@ -31,7 +33,10 @@ static struct rule {
   {"\\)", ')'},         // right bracket
   {"[0-9]+", TK_NUM},   // decimal nums
 
-  {"==", TK_EQ}        // equal
+  {"==", TK_EQ},        // equal
+  {"!=", TK_NEQ},
+  {"&&", TK_AND},
+  {"",   TK_DEREF}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -245,8 +250,25 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   /* TODO: Insert codes to evaluate the expression. */
-
   *success = true;
+
+  for (int i = 0; i < nr_token; i ++) {
+    if (tokens[i].type == '*' && (i == 0
+    || tokens[i - 1].type == '+'
+    || tokens[i - 1].type == '-'
+    || tokens[i - 1].type == '*'
+    || tokens[i - 1].type == '/'
+    || tokens[i - 1].type == '('
+    || tokens[i - 1].type == TK_REG
+    || tokens[i - 1].type == TK_EQ
+    || tokens[i - 1].type == TK_NEQ
+    || tokens[i - 1].type == TK_AND
+  ) ) {
+      tokens[i].type = TK_DEREF;
+    }
+  }
+
+
   return eval(0, nr_token-1);
 
 }
