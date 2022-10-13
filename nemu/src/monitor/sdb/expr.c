@@ -24,7 +24,7 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"0x[a-zA-Z0-9]+", TK_HEX},
-  {"\\$", TK_REG},
+  {"\\$[a-zA-Z0-9]", TK_REG},
   {"\\+", '+'},         // plus
   {"\\-", '-'},         // minus
   {"\\*", '*'},         // multiply
