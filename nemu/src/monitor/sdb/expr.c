@@ -141,8 +141,8 @@ static bool make_token(char *e) {
             bool flag = false;
             bool *success = &flag;
             uint32_t reg_value = isa_reg_str2val(substr_start+1, success);
-            tokens[nr_token ++].type = TK_NUM;
             sprintf(tokens[nr_token].str,"%u",reg_value);
+            tokens[nr_token ++].type = TK_NUM;
             plus_flag = false;
             minus_flag = false;
             break;
