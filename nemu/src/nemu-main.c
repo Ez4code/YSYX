@@ -35,8 +35,8 @@ int main(int argc, char *argv[]) {
       if(success){
         if(result == true_result) printf("result = good\n");
         else {
-          printf("result = good\n");
-          //assert(0);
+          printf("result = wrong\n");
+          assert(0);
         }
 
       }
