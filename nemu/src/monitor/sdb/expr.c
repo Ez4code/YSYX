@@ -135,16 +135,16 @@ static bool make_token(char *e) {
             plus_flag = false;
             minus_flag = false;
             break;
-//          case TK_REG:
-//            if (substr_len > 32) assert(0);                                //debug
-//            bool flag = false;
-//            bool *success = &flag;
-//            uint32_t reg_value = isa_reg_str2val(substr_start+1, success);
-//            tokens[nr_token ++].type = TK_NUM;
-//            sprintf(tokens[nr_token].str,"%u",reg_value);
-//            plus_flag = false;
-//            minus_flag = false;
-//            break;
+          case TK_REG:
+            if (substr_len > 32) assert(0);                                //debug
+            bool flag = false;
+            bool *success = &flag;
+            uint32_t reg_value = isa_reg_str2val(substr_start+1, success);
+            tokens[nr_token ++].type = TK_NUM;
+            sprintf(tokens[nr_token].str,"%u",reg_value);
+            plus_flag = false;
+            minus_flag = false;
+            break;
           case TK_NUM:
             if (substr_len > 32) assert(0);                                //debug
             for(int i = 0; i<substr_len ; i++){
@@ -250,21 +250,21 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
 
-//  for (int i = 0; i < nr_token; i ++) {
-//    if (tokens[i].type == '*' && (i == 0
-//    || tokens[i - 1].type == '+'
-//    || tokens[i - 1].type == '-'
-//    || tokens[i - 1].type == '*'
-//    || tokens[i - 1].type == '/'
-//    || tokens[i - 1].type == '('
-//    || tokens[i - 1].type == TK_REG
-//    || tokens[i - 1].type == TK_EQ
-//    || tokens[i - 1].type == TK_NEQ
-//    || tokens[i - 1].type == TK_AND
-//  ) ) {
-//      tokens[i].type = TK_DEREF;
-//    }
-//  }
+  for (int i = 0; i < nr_token; i ++) {
+    if (tokens[i].type == '*' && (i == 0
+    || tokens[i - 1].type == '+'
+    || tokens[i - 1].type == '-'
+    || tokens[i - 1].type == '*'
+    || tokens[i - 1].type == '/'
+    || tokens[i - 1].type == '('
+    || tokens[i - 1].type == TK_REG
+    || tokens[i - 1].type == TK_EQ
+    || tokens[i - 1].type == TK_NEQ
+    || tokens[i - 1].type == TK_AND
+  ) ) {
+      tokens[i].type = TK_DEREF;
+    }
+  }
 
 
   return eval(0, nr_token-1);
