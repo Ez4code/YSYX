@@ -71,6 +71,7 @@ static int nr_token __attribute__((used))  = 0;
 static bool make_token(char *e) {
   int position = 0;
   int i;
+  memset(tokens, 0 ,65535*sizeof(Token));
   bool plus_flag = false;
   bool minus_flag = false;
   regmatch_t pmatch;
