@@ -146,6 +146,14 @@ static bool make_token(char *e) {
             plus_flag = false;
             minus_flag = false;
             break;
+          case TK_HEX:
+            if (substr_len > 32) assert(0);                                //debug
+            uint32_t hex_value = atoi(substr_start+2);
+            tokens[nr_token ++].type = TK_NUM;
+            sprintf(tokens[nr_token].str,"%u",hex_value);
+            plus_flag = false;
+            minus_flag = false;
+            break;
           case TK_NUM:
             if (substr_len > 32) assert(0);                                //debug
             for(int i = 0; i<substr_len ; i++){
