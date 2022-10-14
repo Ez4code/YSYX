@@ -4,6 +4,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include <memory/vaddr.h>
 
 enum {
   TK_NOTYPE = 256, TK_HEX, TK_REG, TK_NUM, TK_EQ, TK_NEQ, TK_AND, TK_DEREF
@@ -150,6 +151,15 @@ static bool make_token(char *e) {
             if (substr_len > 32) assert(0);                                //debug
             uint32_t hex_value = strtol(substr_start, NULL, 16);
             sprintf(tokens[nr_token].str,"%u",hex_value);
+            tokens[nr_token ++].type = TK_NUM;
+            plus_flag = false;
+            minus_flag = false;
+            break;
+          case TK_DEREF:
+            if (substr_len > 32) assert(0);                                //debug
+            vaddr_t addr_value = strtol(substr_start ,NULL, 16);
+            uint32_t mem = vaddr_read(addr_value, 4);
+            sprintf(tokens[nr_token].str,"%u",mem);
             tokens[nr_token ++].type = TK_NUM;
             plus_flag = false;
             minus_flag = false;

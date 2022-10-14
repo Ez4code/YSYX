@@ -130,8 +130,7 @@ static int cmd_info(char *args, char *){
 }
 
 static int cmd_x(char * args, char * sub_args){
-    char *str;
-    vaddr_t addr = strtol(sub_args ,&str, 16);
+    vaddr_t addr = strtol(sub_args ,NULL, 16);
     for(int i = 0; i < atoi(args); i++){
         word_t mem = vaddr_read(addr + i * 4, 4);
         printf(ANSI_FG_BLUE"0x%lx"ANSI_NONE": 0x%08lx\n", addr + i * 4, mem);
