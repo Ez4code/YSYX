@@ -250,21 +250,21 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
 
-  for (int i = 0; i < nr_token; i ++) {
-    if (tokens[i].type == '*' && (i == 0
-    || tokens[i - 1].type == '+'
-    || tokens[i - 1].type == '-'
-    || tokens[i - 1].type == '*'
-    || tokens[i - 1].type == '/'
-    || tokens[i - 1].type == '('
-    || tokens[i - 1].type == TK_REG
-    || tokens[i - 1].type == TK_EQ
-    || tokens[i - 1].type == TK_NEQ
-    || tokens[i - 1].type == TK_AND
-  ) ) {
-      tokens[i].type = TK_DEREF;
-    }
-  }
+//  for (int i = 0; i < nr_token; i ++) {
+//    if (tokens[i].type == '*' && (i == 0
+//    || tokens[i - 1].type == '+'
+//    || tokens[i - 1].type == '-'
+//    || tokens[i - 1].type == '*'
+//    || tokens[i - 1].type == '/'
+//    || tokens[i - 1].type == '('
+//    || tokens[i - 1].type == TK_REG
+//    || tokens[i - 1].type == TK_EQ
+//    || tokens[i - 1].type == TK_NEQ
+//    || tokens[i - 1].type == TK_AND
+//  ) ) {
+//      tokens[i].type = TK_DEREF;
+//    }
+//  }
 
 
   return eval(0, nr_token-1);
