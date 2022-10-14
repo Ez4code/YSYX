@@ -33,12 +33,11 @@ int main(int argc, char *argv[]) {
       result = expr(expression, success);
 
       if(success){
-        if(result == true_result)
-        printf("result = good\n");
-//        else {
-//          printf("result = good\n");
-//          assert(0);
-//        }
+        if(result == true_result) printf("result = good\n");
+        else {
+          printf("result = good\n");
+          assert(0);
+        }
 
       }
     }
