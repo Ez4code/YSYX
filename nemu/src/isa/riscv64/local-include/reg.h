@@ -15,6 +15,14 @@ static inline const char* reg_name(int idx, int width) {
   return regs[check_reg_idx(idx)];
 }
 
+static inline const int reg_idx(const char *reg_name){
+  extern const char* regs[];
+  for(int i = 0; i < 32; i ++){
+    if(*reg_name == *regs[i]) return i;
+  }
+  return -1;
+}
+
 
 
 #endif

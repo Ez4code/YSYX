@@ -9,11 +9,15 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
-    for(int i = 0; i <= 31; i++){
-        printf("%-15s0x%-18lx%-24ld\n", regs[i], gpr(i), gpr(i));
+    for(int idx = 0; idx <= 31; idx++){
+        printf("%-15s0x%-18lx%-24ld\n", regs[idx], gpr(idx), gpr(idx));
     }
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
-  return 0;
+  int idx = reg_idx(s);
+  if(idx == -1) *success = false;
+  return gpr(idx);
+//  printf("%-15s0x%-18lx%-24ld\n", regs[idx], gpr(idx), gpr(idx));
+//  return 0;
 }
