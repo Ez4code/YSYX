@@ -137,6 +137,21 @@ static bool make_token(char *e) {
             plus_flag = false;
             minus_flag = false;
             break;
+          case TK_EQ:
+            tokens[nr_token ++].type = TK_EQ;
+            plus_flag = false;
+            minus_flag = false;
+            break;
+          case TK_NEQ:
+            tokens[nr_token ++].type = TK_EQ;
+            plus_flag = false;
+            minus_flag = false;
+            break;
+          case TK_AND:
+            tokens[nr_token ++].type = TK_AND;
+            plus_flag = false;
+            minus_flag = false;
+            break;
           case TK_REG:
             if (substr_len > 32) assert(0);                                //debug
             bool flag = false;
