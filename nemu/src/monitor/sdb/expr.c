@@ -244,6 +244,11 @@ static uint32_t eval(int p, int q) {
             op_type = tokens[i].type;
           }
           break;
+        case TK_DEREF:
+//          vaddr_t addr_value = strtol(tokens[nr_token + 1].str ,NULL, 10);
+//          uint32_t mem = vaddr_read(addr_value, 4);
+//          sprintf(tokens[nr_token].str,"%u",mem);
+//          tokens[nr_token ++].type = TK_NUM;
         case TK_NUM: break;
         default: assert(0); //break;
       }
@@ -283,6 +288,7 @@ word_t expr(char *e, bool *success) {
     || tokens[i - 1].type == TK_AND
   ) ) {
       tokens[i].type = TK_DEREF;
+      printf("test");
     }
   }
 
