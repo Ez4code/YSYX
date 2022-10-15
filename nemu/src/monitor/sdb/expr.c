@@ -245,6 +245,7 @@ static uint32_t eval(int p, int q) {
           }
           break;
         case TK_DEREF:
+          printf("test in defef%d\n",nr_token);
 //          vaddr_t addr_value = strtol(tokens[nr_token + 1].str ,NULL, 10);
 //          uint32_t mem = vaddr_read(addr_value, 4);
 //          sprintf(tokens[nr_token].str,"%u",mem);
@@ -287,12 +288,11 @@ word_t expr(char *e, bool *success) {
     || tokens[i - 1].type == TK_NEQ
     || tokens[i - 1].type == TK_AND
   ) ) {
-      printf("test");
       tokens[i].type = TK_DEREF;
 
     }
   }
-  printf("%d\n",nr_token);
+  printf("test%d\n",nr_token);
 
   return eval(0, nr_token-1);
 
