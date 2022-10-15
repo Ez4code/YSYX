@@ -273,7 +273,7 @@ word_t expr(char *e, bool *success) {
   }
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
-  printf("%d\n",nr_token);
+  //printf("%d\n",nr_token);
   printf("test");
   for (int i = 0; i < nr_token; i ++) {
     if (tokens[i].type == '*' && (i == 0
