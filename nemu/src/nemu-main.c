@@ -16,34 +16,34 @@ int main(int argc, char *argv[]) {
 
 
 ////************ epxr read and calculate ************
-//  printf("hello");
-//#include <stdio.h>    //just for expr
-//#include "monitor/sdb/sdb.h"      //just for expr
-//  FILE *fp;
-//  uint32_t true_result;
-//  uint32_t result;
-//  char expression[65530];
-//  if ((fp = fopen("/home/boy666/workspace/ysyx-workbench/nemu/tools/gen-expr/build/input", "r")) == NULL) printf("\aFile open failed.\n");
-//  else{
-//    while(fscanf(fp, "%u%s", &true_result, expression) == 2)
-//    {
-//      printf("%u %s\n", true_result, expression);
-//      bool flag = false;
-//      bool *success = &flag;
-//      result = expr(expression, success);
-//
-//      if(success){
-//        if(result == true_result) printf("result = good\n");
-//        else {
-//          printf("result = wrong\n");
-//          assert(0);
-//        }
-//
-//      }
-//    }
-//
-//    fclose(fp);
-//  }
+  printf("hello");
+#include <stdio.h>    //just for expr
+#include "monitor/sdb/sdb.h"      //just for expr
+  FILE *fp;
+  uint32_t true_result;
+  uint32_t result;
+  char expression[65530];
+  if ((fp = fopen("/home/boy666/workspace/ysyx-workbench/nemu/tools/gen-expr/build/input", "r")) == NULL) printf("\aFile open failed.\n");
+  else{
+    while(fscanf(fp, "%u%s", &true_result, expression) == 2)
+    {
+      printf("%u %s\n", true_result, expression);
+      bool flag = false;
+      bool *success = &flag;
+      result = expr(expression, success);
+
+      if(success){
+        if(result == true_result) printf("result = good\n");
+        else {
+          printf("result = wrong\n");
+          assert(0);
+        }
+
+      }
+    }
+
+    fclose(fp);
+  }
 
 ////************ epxr read and calculate ************
 
