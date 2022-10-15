@@ -289,7 +289,7 @@ word_t expr(char *e, bool *success) {
     || tokens[i - 1].type == TK_AND
   ) ) {
       tokens[i].type = TK_DEREF;
-
+      printf("i == %d\n",i);
     }
   }
   printf("test%d\n",nr_token);
