@@ -156,10 +156,10 @@ static bool make_token(char *e) {
             minus_flag = false;
             break;
           case TK_DEREF:
-            if (substr_len > 32) assert(0);                                //debug
-            vaddr_t addr_value = strtol(substr_start ,NULL, 16);
-            uint32_t mem = vaddr_read(addr_value, 4);
-            sprintf(tokens[nr_token].str,"%u",mem);
+//            if (substr_len > 32) assert(0);                                //debug
+//            vaddr_t addr_value = strtol(substr_start ,NULL, 16);
+//            uint32_t mem = vaddr_read(addr_value, 4);
+//            sprintf(tokens[nr_token].str,"%u",mem);
             tokens[nr_token ++].type = TK_NUM;
             plus_flag = false;
             minus_flag = false;
