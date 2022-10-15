@@ -154,7 +154,6 @@ static bool make_token(char *e) {
             tokens[nr_token ++].type = TK_NUM;
             plus_flag = false;
             minus_flag = false;
-            printf("Exit NEMU\n");
             break;
           case TK_DEREF:
             if (substr_len > 32) assert(0);                                //debug
@@ -269,6 +268,7 @@ word_t expr(char *e, bool *success) {
   }
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
+  printf("%d\n",nr_token);
 
   for (int i = 0; i < nr_token; i ++) {
     if (tokens[i].type == '*' && (i == 0
