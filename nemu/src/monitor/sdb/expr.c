@@ -248,7 +248,7 @@ static uint32_t eval(int p, int q) {
           break;
         case TK_DEREF:
           printf("test in defef%d\n",nr_token);
-          vaddr_t addr_value = strtol(tokens[nr_token+1].str ,NULL, 10);
+          vaddr_t addr_value = strtol(tokens[i+1].str ,NULL, 10);
           printf("addr_value in defef%ld\n",addr_value);
           uint32_t mem = vaddr_read(addr_value, 4);
 //          sprintf(tokens[nr_token+1].str,"%u",mem);
