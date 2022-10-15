@@ -247,11 +247,8 @@ static uint32_t eval(int p, int q) {
           }
           break;
         case TK_DEREF:
-          printf("test in defef%d\n",nr_token);
           vaddr_t addr_value = strtol(tokens[i+1].str ,NULL, 10);
-          printf("addr_value in defef%ld\n",addr_value);
           uint32_t mem = vaddr_read(addr_value, 4);
-//          sprintf(tokens[nr_token+1].str,"%u",mem);
           return mem;
         case TK_NUM: break;
         default: assert(0); //break;
@@ -277,7 +274,6 @@ word_t expr(char *e, bool *success) {
   }
   /* TODO: Insert codes to evaluate the expression. */
   *success = true;
-  printf("%d\n",nr_token);
 
   for (int i = 0; i < nr_token; i ++) {
     if (tokens[i].type == '*' && (i == 0
@@ -292,10 +288,8 @@ word_t expr(char *e, bool *success) {
     || tokens[i - 1].type == TK_AND
   ) ) {
       tokens[i].type = TK_DEREF;
-      printf("i == %d\n",i);
     }
   }
-  printf("test%d\n",nr_token);
 
   return eval(0, nr_token-1);
 
