@@ -217,22 +217,32 @@ static uint32_t eval(int p, int q) {
     int i = 0, j = 0;
     int op = 0, op_type = 0;
     int val1, val2;
-    bool flag = false;
+    bool add_flag = false;
+    bool bool_flag = false;
     for (i = p; i <= q; i++) {
       switch (tokens[i].type) {
         case '(': j++; break;
         case ')': j--; break;
-        case '+':
-        case '-':
+        case TK_EQ:
+        case TK_NEQ:
+        case TK_AND:
           if (!j) {
             op = i;
             op_type = tokens[i].type;
-            flag = true;
+            bool_flag = true;
+          }
+          break;
+        case '+':
+        case '-':
+          if (!j && !bool_flag) {
+            op = i;
+            op_type = tokens[i].type;
+            add_flag = true;
           }
           break;
         case '*':
         case '/':
-          if (!j && !flag) {
+          if (!j && !bool_flag && !add_flag) {
             op = i;
             op_type = tokens[i].type;
           }
@@ -253,6 +263,8 @@ static uint32_t eval(int p, int q) {
       case '-': return val1 - val2;
       case '*': return val1 * val2;
       case '/': return val1 / val2;
+      case TK_EQ: return val1 == val2;
+      case TK_AND: return val1 && val2;
       default: assert(0);
     }
   }
