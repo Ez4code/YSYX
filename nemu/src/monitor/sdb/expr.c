@@ -161,6 +161,7 @@ static bool make_token(char *e) {
             uint32_t mem = vaddr_read(addr_value, 4);
             sprintf(tokens[nr_token].str,"%u",mem);
             tokens[nr_token ++].type = TK_NUM;
+            printf("Exit NEMU\n");
             plus_flag = false;
             minus_flag = false;
             break;
