@@ -192,13 +192,14 @@ static bool make_token(char *e) {
 
 static bool check_parentheses(int p, int q) {
   int i = 0, j = 0;
+  bool flag_valid = false;
   for (i = p; i <= q; i++) {
-    if (tokens[i].type == '(') j++;
+    if (tokens[i].type == '(') {j++; flag_valid = true;}
     if (tokens[i].type == ')') j--;
     if (j < 0) return false;        //bad expression
     if (j == 0 && i != p && i != q) return false;
   }
-  if(j == 0) return true;
+  if(j == 0 && flag_valid == true) return true;
   else return false;                //bad expression
 }
 
@@ -218,7 +219,7 @@ static uint32_t eval(int p, int q) {
   /* The expression is surrounded by a matched pair of parentheses.
    * If that is the case, just throw away the parentheses.
    */
-    printf("test in checks%d\n",nr_token);
+
   return eval(p + 1, q - 1);
   }
   else {
