@@ -156,16 +156,16 @@ static bool make_token(char *e) {
             if (substr_len > 32) assert(0);                                //debug
             bool flag = false;
             bool *success = &flag;
-            uint32_t reg_value = isa_reg_str2val(substr_start+1, success);
-            sprintf(tokens[nr_token].str,"%u",reg_value);
+            word_t reg_value = isa_reg_str2val(substr_start+1, success);
+            sprintf(tokens[nr_token].str,"%lu",reg_value);
             tokens[nr_token ++].type = TK_NUM;
             plus_flag = false;
             minus_flag = false;
             break;
           case TK_HEX:
             if (substr_len > 32) assert(0);                                //debug
-            uint32_t hex_value = strtol(substr_start, NULL, 16);
-            sprintf(tokens[nr_token].str,"%u",hex_value);
+            word_t hex_value = strtol(substr_start, NULL, 16);
+            sprintf(tokens[nr_token].str,"%lu",hex_value);
             tokens[nr_token ++].type = TK_NUM;
             plus_flag = false;
             minus_flag = false;
@@ -209,7 +209,7 @@ static bool check_parentheses(int p, int q) {
   else return false;                //bad expression
 }
 
-static uint32_t eval(int p, int q) {
+static word_t eval(int p, int q) {
   if (p > q) {
   /* Bad expression */
   assert(0);                        //debug
@@ -264,7 +264,7 @@ static uint32_t eval(int p, int q) {
           break;
         case TK_DEREF:
           vaddr_t addr_value = strtol(tokens[i+1].str ,NULL, 10);
-          uint32_t mem = vaddr_read(addr_value, 4);
+          word_t mem = vaddr_read(addr_value, 4);
           return mem;
         case TK_NUM: break;
         default: assert(0); //break;
