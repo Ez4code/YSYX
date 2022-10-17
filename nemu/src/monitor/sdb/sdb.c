@@ -140,7 +140,6 @@ static int cmd_w(char *args, char *){
   if(success){
     WP* head = new_wp(result);
     print_wp(head);
-    printf("$%d = %ld\n",expr_count, result);
     wp_count++;
     return 0;
   }

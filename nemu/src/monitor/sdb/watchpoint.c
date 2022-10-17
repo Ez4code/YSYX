@@ -16,7 +16,6 @@
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
 static bool init_flag = false;
-static int wp_num = 0;
 
 void init_wp_pool() {
   int i;
@@ -44,7 +43,6 @@ WP* new_wp(int value){
   free_ = free_->next;
   new->value = value;
   new->next = NULL;
-  new->NO = wp_num++;
   if(head == NULL) head = new;
   else{
     new->next = head;//insert behind
