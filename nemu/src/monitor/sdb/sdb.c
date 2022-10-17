@@ -143,7 +143,7 @@ static int cmd_d(char *args, char *){
   word_t result = expr(args, success);
   if(success){
     if(head == NULL){
-        printf("wp is empty \"todo\".");
+        printf("wp_pool is empty.\n");
         return 0;
     }
     free_wp(head, result);
