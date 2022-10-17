@@ -17,6 +17,7 @@ bug:
 
 static int is_batch_mode = false;
 static int expr_count = 0;
+static int wp_count = 0;
 
 void init_regex();
 void init_wp_pool();
@@ -62,6 +63,8 @@ static int cmd_info(char *args, char *);
 
 static int cmd_x(char * args, char * sub_args);
 
+static int cmd_w(char *args, char *);
+
 static int cmd_p(char *args, char *){
   bool flag = false;
   bool *success = &flag;
@@ -91,7 +94,8 @@ static struct {
   { "x", "Calculate the value of the expression EXPR,"
          "\n    take the result as the starting memory address, "
          "\n    and output N consecutive 4 bytes in hexadecimal form", cmd_x},
-  { "p", "Calculate the value of the expression EXPR", cmd_p}
+  { "p", "Calculate the value of the expression EXPR", cmd_p},
+  { "w", "When 'W EXPR' is change, pause the program", cmd_w}
 
   /* TODO: Add more commands */
 
@@ -127,6 +131,23 @@ static int cmd_info(char *args, char *){
     else if(*args == 'w');
     else printf("Unknown sub command '%s'\n", args);
     return 0;
+}
+
+static int cmd_w(char *args, char *){
+  bool flag = false;
+  bool *success = &flag;
+  word_t result = expr(args, success);
+  if(success){
+    WP* head = new_wp(result);
+    print_wp(head);
+    printf("$%d = %ld\n",expr_count, result);
+    wp_count++;
+    return 0;
+  }
+  else {
+    printf("Invalid number \"todo\".");
+    return 0;
+  }
 }
 
 static int cmd_x(char * args, char * sub_args){
