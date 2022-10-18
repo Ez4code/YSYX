@@ -10,7 +10,7 @@ word_t expr(char *e, bool *success);
 typedef struct watchpoint {
     int NO;
     int value;
-    int mem;
+    word_t mem;
     bool flag;
     struct watchpoint *next;
 

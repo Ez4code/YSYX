@@ -79,8 +79,8 @@ void print_wp(WP* head){
     return;
   }
   while(p != NULL){
-    word_t memory = vaddr_read(p->value, 4);
-    printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, memory);
+//    word_t memory = vaddr_read(p->value, 4);
+    printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, p->mem);
     p = p->next;
   }
   return;
@@ -94,8 +94,10 @@ void wp_state(WP* head){
   }
   while(p != NULL){
     word_t memory = vaddr_read(p->value, 4);
-    if(p->mem != memory) nemu_state.state = NEMU_STOP;
-    printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, memory);
+    if(p->mem != memory){
+      nemu_state.state = NEMU_STOP;
+      printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, memory);
+    }
     p = p->next;
   }
   return;
