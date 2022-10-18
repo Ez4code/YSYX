@@ -117,13 +117,14 @@ config CC_ASAN
   depends on MODE_SYSTEM
   bool "Enable address sanitizer"
   default n
-endmenu
-
-menu "Testing and Debugging"
 
 config CONFIG_WATCHPOINT
   bool "Enable watchpoint scan"
-  default y
+  default n
+
+endmenu
+
+menu "Testing and Debugging"
 
 config TRACE
   bool "Enable tracer"
