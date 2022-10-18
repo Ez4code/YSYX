@@ -95,8 +95,9 @@ void wp_state(WP* head){
   while(p != NULL){
     word_t memory = vaddr_read(p->value, 4);
     if(p->mem != memory){
-      nemu_state.state = NEMU_STOP;
+      p->mem = memory;
       printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, memory);
+      nemu_state.state = NEMU_STOP;
     }
     p = p->next;
   }
