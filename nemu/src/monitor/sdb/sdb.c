@@ -163,7 +163,7 @@ static int cmd_w(char *args, char *){
   bool *success = &flag;
   word_t result = expr(args, success);
   if(success){
-    WP* head = new_wp(result);
+    WP* head = new_wp(result, args);
     print_wp(head);
     wp_count++;
     return 0;

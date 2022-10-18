@@ -10,8 +10,8 @@ word_t expr(char *e, bool *success);
 typedef struct watchpoint {
     int NO;
     int value;
-    word_t mem;
     bool flag;
+    char str[32];
     struct watchpoint *next;
 
     /* TODO: Add more members if necessary */
@@ -19,7 +19,7 @@ typedef struct watchpoint {
 } WP;
 
 void init_wp_pool();
-WP* new_wp(int value);
+WP* new_wp(int value, char * expr);
 void free_wp(WP* head, int value);
 void print_wp(WP* head);
 void wp_state();
