@@ -22,6 +22,7 @@ void init_wp_pool();
 WP* new_wp(int value);
 void free_wp(WP* head, int value);
 void print_wp(WP* head);
+void wp_state();
 
 
 

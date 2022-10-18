@@ -86,7 +86,7 @@ void print_wp(WP* head){
   return;
 }
 
-void wp_state(WP* head){
+void wp_state(){
   WP *p = head;
   if(head == NULL){
     printf("wp is empty!");
