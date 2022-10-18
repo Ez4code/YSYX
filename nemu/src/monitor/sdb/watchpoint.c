@@ -79,7 +79,7 @@ void print_wp(WP* head){
   }
   while(p != NULL){
 //    word_t memory = vaddr_read(p->value, 4);
-    printf("WatchPoint: %d %s 0x%08x\n", p->NO, p->str, p->value);
+    printf("WatchPoint:NO.%d expr:%s value:0x%08x\n", p->NO, p->str, p->value);
     p = p->next;
   }
   return;
