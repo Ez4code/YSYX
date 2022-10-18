@@ -1,7 +1,8 @@
 #include "sdb.h"
 #include <memory/vaddr.h>
+#include <cpu/cpu.h>
 
-#define NR_WP 32
+
 
 //typedef struct watchpoint {
 //  int NO;
@@ -38,11 +39,13 @@ WP* new_wp(int value){
     printf("ERROR, wp_pool is full!");
     assert(0);
   }
+  word_t memory = vaddr_read(value, 4);
   WP *new = NULL;
   new = free_;
   free_ = free_->next;
   new->value = value;
   new->next = NULL;
+  new->mem = memory;
   if(head == NULL) head = new;
   else{
     new->next = head;//insert behind
@@ -76,10 +79,24 @@ void print_wp(WP* head){
     return;
   }
   while(p != NULL){
-    word_t mem = vaddr_read(p->value, 4);
-    printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, mem);
+    word_t memory = vaddr_read(p->value, 4);
+    printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, memory);
     p = p->next;
   }
   return;
+}
 
+void wp_state(WP* head){
+  WP *p = head;
+  if(head == NULL){
+    printf("wp is empty!");
+    return;
+  }
+  while(p != NULL){
+    word_t memory = vaddr_read(p->value, 4);
+    if(p->mem != memory) nemu_state.state = NEMU_STOP;
+    printf("WatchPoint: %d  0x%08x  0x%08lx\n", p->NO, p->value, memory);
+    p = p->next;
+  }
+  return;
 }

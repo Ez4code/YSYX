@@ -5,11 +5,12 @@
 
 word_t expr(char *e, bool *success);
 
-
+#define NR_WP 32
 
 typedef struct watchpoint {
     int NO;
     int value;
+    int mem;
     bool flag;
     struct watchpoint *next;
 
