@@ -97,7 +97,7 @@ void wp_state(){
     word_t result = expr(p->str, success);
     if(success){
       if(result != p->value){
-        printf("WatchPoint: %d %s 0x%08x\n", p->NO, p->str, p->value);
+        printf("WatchPoint:NO.%d expr:%s value:0x%08x\n", p->NO, p->str, p->value);
         nemu_state.state = NEMU_STOP;
       }
       p = p->next;
