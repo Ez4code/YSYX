@@ -11,11 +11,30 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___sequent__TOP__1\n"); );
+    // Variables
+    SData/*15:0*/ __Vdly__led0;
+    IData/*31:0*/ __Vdly__top__DOT__led1__DOT__count;
     // Body
-    vlSelf->top__DOT__led1__DOT__ledr = ((~ (IData)(vlSelf->rst)) 
-                                         & ((IData)(vlSelf->a) 
-                                            ^ (IData)(vlSelf->b)));
-    vlSelf->led0 = vlSelf->top__DOT__led1__DOT__ledr;
+    __Vdly__top__DOT__led1__DOT__count = vlSelf->top__DOT__led1__DOT__count;
+    __Vdly__led0 = vlSelf->led0;
+    if (vlSelf->rst) {
+        __Vdly__led0 = 1U;
+        __Vdly__top__DOT__led1__DOT__count = 0U;
+    } else {
+        if ((0U == vlSelf->top__DOT__led1__DOT__count)) {
+            __Vdly__led0 = ((0xfffeU & ((IData)(vlSelf->led0) 
+                                        << 1U)) | (1U 
+                                                   & ((IData)(vlSelf->led0) 
+                                                      >> 0xfU)));
+        }
+        __Vdly__top__DOT__led1__DOT__count = ((0x4c4b40U 
+                                               <= vlSelf->top__DOT__led1__DOT__count)
+                                               ? 0U
+                                               : ((IData)(1U) 
+                                                  + vlSelf->top__DOT__led1__DOT__count));
+    }
+    vlSelf->led0 = __Vdly__led0;
+    vlSelf->top__DOT__led1__DOT__count = __Vdly__top__DOT__led1__DOT__count;
 }
 
 void Vtop___024root___eval(Vtop___024root* vlSelf) {
@@ -60,9 +79,5 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
         Verilated::overWidthError("clk");}
     if (VL_UNLIKELY((vlSelf->rst & 0xfeU))) {
         Verilated::overWidthError("rst");}
-    if (VL_UNLIKELY((vlSelf->a & 0xfeU))) {
-        Verilated::overWidthError("a");}
-    if (VL_UNLIKELY((vlSelf->b & 0xfeU))) {
-        Verilated::overWidthError("b");}
 }
 #endif  // VL_DEBUG
