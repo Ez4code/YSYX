@@ -44,7 +44,7 @@ $(BIN): $(VER) $(SIM) $(NVBOARD_ARCHIVE)
 
 
 all: default 
-#	@verilator -Wall --cc --exe --build $(SIM) $(VER)
+	@verilator -Wall --cc --exe --build $(SIM) $(VER)
 
 
 run: $(BIN) git
