@@ -8,13 +8,12 @@ word_t expr(char *e, bool *success);
 #define NR_WP 32
 
 typedef struct watchpoint {
+    /* TODO: Add more members if necessary */
     int NO;
     int value;
     bool flag;
     char str[32];
     struct watchpoint *next;
-
-    /* TODO: Add more members if necessary */
 
 } WP;
 
