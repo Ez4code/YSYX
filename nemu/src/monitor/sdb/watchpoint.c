@@ -53,7 +53,7 @@ WP* new_wp(int value, char * expr){
   return head;
 }
 
-void free_wp(WP* head, int num){
+void free_wp(WP* head, int num){          //have bug
   if(head == NULL){
     printf("ERROR, wp_pool is empty");
     return;
